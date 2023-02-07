@@ -24,7 +24,8 @@
     "vscode": {
       // コンテナ内で使用する Extension を指定
       "extensions": [
-      "taichi.vscode-textlint"
+      "taichi.vscode-textlint",
+      "adrianwilczynski.terminal-commands"
       ],
 
       // コンテナ内での追加設定
@@ -39,7 +40,19 @@
           "run": "onType",
           // 校正対象のファイル言語モード
           "languages": ["markdown", "plaintext"]
-        }
+        },
+        
+        //---------- adrianwilczynski.terminal-commands ----------
+        "runTerminalCommand.commands": [
+          { "name": "新しい記事を作成",
+            "command": "zenn new:article",
+            "auto": true
+          },
+          { "name": "新しい本を作成",
+            "command": "zenn new:book",
+            "auto": true
+          }
+        ]
 	    }
     }
   }
