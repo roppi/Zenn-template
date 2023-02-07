@@ -1,0 +1,276 @@
+{
+  "filters": {
+  },
+  "rules": {
+    //==================================== textlint-rule-prh ===================================
+    // 日本語ルールと表記揺れチェック
+    // https://github.com/textlint-rule/textlint-rule-prh
+    //==========================================================================================
+    "prh": {
+      // 適用するルールファイル
+      "rulePaths": [
+        "/usr/local/lib/node_modules/textlint-rule-prh/node_modules/prh/prh-rules/media/WEB+DB_PRESS.yml",
+        "/usr/local/lib/node_modules/textlint-rule-prh/node_modules/prh/prh-rules/media/techbooster.yml"
+      ],
+      // 見出しチェック対象とするかどうか
+      "checkHeader": true,
+      // コメントをチェック対象とするコードブロックの言語
+      "checkCodeComment": [],
+      // 強調をチェック対象とするかどうか
+      "checkEmphasis": false,
+      // 引用ブロックをチェック対象とするかどうか
+      "checkBlockQuote": false,
+      // リンクをチェック対象とするかどうか
+      "checkLink": false
+    },
+
+    //================================= textlint-rule-proofdict ================================
+    // Proofdictを使用した表記揺れチェック
+    // https://github.com/proofdict/proofdict/tree/master/packages/%40proofdict/textlint-rule-proofdict
+    //==========================================================================================
+    // "@proofdict/proofdict": {
+    // "dicts": [
+    //     {
+    //       // Proofdict の URL (ご自身のProofdictのURLを設定)
+    //       "dictURL": "https://XXX.github.io/proof-dictionary/",
+    //       // ローカルの辞書を使用する場合は、glob形式で指定。
+    //       //"dictGlob": "./dict/*.yml",
+    //       // 自動更新間隔（標準：60 * 1000 msec）
+    //       "autoUpdateInterval": 60000,
+    //       // 有効または無視するタグを設定
+    //       "allowTags": [],
+    //       "denyTags": []
+    //     }
+    //   ]
+    // },
+
+    //=================================== preset-ja-spacing ====================================
+    // 日本語周りにおけるスペースの有無を決定するtextlintルールプリセット
+    // https://github.com/textlint-ja/textlint-rule-preset-ja-spacing
+    //==========================================================================================
+    "preset-ja-spacing": {
+      // 半角文字と全角文字の間にスペースを入れるかどうか
+      "ja-space-between-half-and-full-width": {
+        // "always": 常に入れる、"never"：常に入れない
+        // または種別を選択 ["alphabets"：英字, "numbers"：数字, "punctuation"：句読点（、。）]
+        // 下記は、半角英字と全角の間のみスペースを入れる設定
+        "space": ["alphabets"]
+      },
+      // インラインコードの周りにスペースを入れるかどうか
+      "ja-space-around-code": {
+        "before": true,
+        "after": true
+      },
+      // 全角文字間のスペースを許容しないかどうか
+      "ja-no-space-between-full-width": true,
+      // カタカナ語間を中黒または半角スペースで区切るかどうか
+      "ja-nakaguro-or-halfwidth-space-between-katakana": true,
+      // かっこ内・外ともにスペースを入れないかどうか　※対象：[]（）［］「」『』
+      "ja-no-space-around-parentheses": true,
+      // 文末の感嘆符の後に別の文が続く場合に全角スペースを入れるかどうか　※！！のように文中の場合は対象外
+      "ja-space-after-exclamation": true,
+      // 文末の疑問符の後に別の文が続く場合に全角スペースを入れるかどうか　※？？のように文中の場合は対象外
+      "ja-space-after-question": true
+    },
+    
+    //============================== preset-ja-technical-writing ==============================
+    // 技術文書向けのtextlintルールプリセット
+    // https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing
+    //==========================================================================================
+    "preset-ja-technical-writing": {
+
+      // 1文の長さを制限するかどうか
+      "sentence-length": {
+        // １文の最大文字数
+        "max": 100,
+        // 文字数カウント対象外とする正規表現パターンの配列
+        "skipPatterns": ["/\\(.*\\)$\\./"],
+        // URLの文字数はカウントしないかどうか　※対象：<https:example.com> または [example description](https://example.com)
+        "skipUrlStringLink": true
+      },
+
+      // １文中のカンマの数を制限するかどうか
+      "max-comma": {
+        // １文に使用できる最大個数
+        "max" : 3
+      },
+
+      // 連続する漢字の最大長を制限するかどうか
+      "max-kanji-continuous-len": {
+        // 連続した漢字の最大文字数
+        "max": 6,
+        // 最大文字数以上の連続を許容する言葉の配列
+        "allow": ["倍精度浮動小数点数"]
+      },
+
+      // 数量や回数では算用数字、慣用表現や副詞などでは漢数字と文字を使い分けるかどうか
+      "arabic-kanji-numbers": true,
+
+      // 敬体(ですます調)と常体(である調)の混在を許容しないかどうか
+      "no-mix-dearu-desumasu": {
+        // 見出し　（""：自動判定（多い表現）、"ですます"：敬体、"である"）
+        "preferInHeader": "", // "である" or "ですます"
+        // 本文　　（""：自動判定（多い表現）、"ですます"：敬体、"である"）
+        "preferInBody": "ですます",// "である" or "ですます"
+        // 箇条書き（""：自動判定（多い表現）、"ですます"：敬体、"である"）
+        "preferInList": "である",    // "である" or "ですます"
+        // 文末以外でも、敬体(ですます調)と常体(である調)を厳しくチェックするかどうか
+        "strict": true
+      },
+
+      // 文末の句点を統一するかどうか（日本語を含む文のみ）
+      "ja-no-mixed-period": {
+        // 句点として修正に使用する文字列
+        "periodMark": "。",
+        // 上記以外に句点として許容する文字列の配列
+        "allowPeriodMarks": [],
+        // 末尾に絵文字を置くことを許容するか
+        "allowEmojiAtEnd": false,
+        // 句点で終わって無い場合に`periodMark`を--fix時に追加するかどうか
+        "forceAppendPeriod": true
+      },
+
+      // 二重否定を禁止するかどうか
+      "no-double-negative-ja": true,
+
+      // ら抜き言葉を禁止するかどうか
+      "no-dropping-the-ra": true,
+
+      // 逆接の接続助詞「が」の連続使用を禁止するかどうか
+      "no-doubled-conjunctive-particle-ga": true,
+
+      // 同じ接続詞の連続使用を禁止するかどうか
+      "no-doubled-conjunction": true,
+
+      // 同じ助詞の連続使用を禁止するかどうか
+      "no-doubled-joshi": {
+        // 間隔値は1から開始されます
+        "min_interval" : 1,
+        // 例外をエラーとするかどうか（下記URL参照）
+        // https://github.com/textlint-ja/textlint-rule-no-doubled-joshi#%E4%BE%8B%E5%A4%96
+        "strict": false,
+        // 複数回の出現を許容する助詞（並立の助詞「も」「や」など連続使用を許容するもの）
+        "allow": [],
+        // 文の区切り文字となる配列
+        "separatorCharacters": [".", "．", "。", "?", "!", "？", "！"],
+        // 読点として扱う文字配列（1文節離れたことにする）
+        "commaCharacters": ["、", "，"]
+      },
+
+      // UTF8-MAC 濁点「゛」・半濁点「゜」の使用を禁止するかどうか
+      "no-nfd": true,
+
+      //改行とタブ以外の制御文字の使用を禁止するかどうか
+      "no-invalid-control-character": {
+          // 許容する制御文字
+          "allow": [],
+          // コード内での使用も禁止するかどうか
+          "checkCode": false,
+          // 画像のタイトル・代替メッセージも禁止するかどうか
+          "checkImage": true
+      },
+
+      // ゼロ幅スペースの使用を禁止するかどうか
+      "no-zero-width-spaces": true,
+
+      // 感嘆符・疑問符の使用を禁止するかどうか
+      "no-exclamation-question-mark": {
+        // 使用を許容する正規表現パターンの配列
+        "allow": ["Yahoo!", "!?"],
+        // 「!」半角感嘆符の使用を許容するかどうか
+        "allowHalfWidthExclamation": false,
+        // 「！」全角感嘆符の使用を許容するかどうか
+        "allowFullWidthExclamation": true,
+        // 「?」半角疑問符の使用を許容するかどうか
+        "allowHalfWidthQuestion": false,
+        // 「？」全角疑問符の使用を許容するかどうか
+        "allowFullWidthQuestion": true
+      },
+
+      // 半角カナの使用を禁止するかどうか
+      "no-hankaku-kana": true,
+
+      // 弱い日本語表現の使用を禁止するかどうか（〜かもしれない、～と思う等）
+      "ja-no-weak-phrase": true,
+
+      // 入力ミスの可能性がある、同一語の連続を禁止するかどうか
+      "ja-no-successive-word": {
+        // オノマトペ（カクカク、ドキドキ等）を許容するかどうか
+        // 制限: オノマトペを判定する方法がないため、同じカタカナの語が連続したものをオノマトペとして扱う
+        "allowOnomatopee": true,
+        // 連続を許容する語（正規表現利用可）
+        "allow": []
+      },
+      
+      // よくある誤用を禁止するかどうか（下記URL参照）
+      // https://github.com/textlint-ja/textlint-rule-ja-no-abusage
+      "ja-no-abusage": true,
+
+      // 冗長な表現を禁止するかどうか（下記URL参照）
+      // https://github.com/textlint-ja/textlint-rule-ja-no-redundant-expression
+      "ja-no-redundant-expression": {
+        "dictOptions": {
+          // 冗長な表現を許容するノードタイプ(https://textlint.github.io/docs/txtnode.html#type)
+          "allowNodeTypes": ["BlockQuote", "Link", "ReferenceDef", "Code"],
+          // dict1：『すること[助詞](不)可能』等の辞書　例）❌脱獄することは不可能 → ✔脱獄は不可能
+          "dict1": {
+            // dict1 の内容を許容するかどうか
+            "disabled": false,
+            // 例外とする正規表現パターン
+            "allows": []
+          },
+          // dict2：『すること[助詞]できる』等の辞書　例）❌実施することができる → ✔実施ができる
+          "dict2": {
+            // dict2 の内容を許容するかどうか
+            "disabled": false,
+            // 例外とする正規表現パターン
+            "allows": []
+          },
+          // dict3：『であると言える』等の辞書　例）❌完璧だと言える → ✔完璧だ
+          "dict3": {
+            // dict3 の内容を許容するかどうか
+            "disabled": false,
+            // 例外とする正規表現パターン
+            "allows": []
+          },
+          // dict4：『であると考えている』等の辞書　例）❌可能であると考えている → ✔可能である
+          "dict4": {
+            // dict4 の内容を許容するかどうか
+            "disabled": false,
+            // 例外とする正規表現パターン
+            "allows": []
+          },
+          // dict5：『[サ変名詞]を行う』等の辞書　例）❌議論を行う → ✔議論する
+          "dict5": {
+            // dict5 の内容を許容するかどうか
+            "disabled": false,
+            // 例外とする正規表現パターン
+            "allows": ["/^処理を行[ぁ-ん]/","/^[ァ-ヶ]+を.?行[ぁ-ん]/","/^[a-zA-Z]+を.?行[ぁ-ん]/"]
+          },
+          // dict6：『[サ変名詞]を実行』等の辞書　例）❌表示を実行 → ✔表示する
+          "dict6": {
+            // dict6 の内容を許容するかどうか
+            "disabled": false,
+            // 例外とする正規表現パターン
+              "allows": ["/^処理を実行/","/^[ァ-ヶ]+を.?実行/","/^[a-zA-Z]+を.?実行/"]
+          }
+        }, 
+
+        // 日本語中に現れる不自然なアルファベット1文字を禁止するかどうか
+        "ja-unnatural-alphabet": {
+          // 大文字のAからZを例外
+          // デフォルトでは、小文字母音と n も許容されているが個人的に除外
+          "allow" :["/[A-Z]/"],
+          // R言語、X座標等は許容するかどうか
+          "allowCommonCase": true,
+          // その他例外とする正規表現パターン
+          "allows": []
+        },
+
+        // 対になっていないカッコや引用符を禁止するかどうか
+        // 対象："", [], (), {}, 「」, （）, 『』, ｛｝, ［］, 〚〛, 【】
+        "no-unmatched-pair": true
+      }
+    }
+  }
+}
