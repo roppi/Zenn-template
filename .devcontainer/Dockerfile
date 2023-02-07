@@ -10,7 +10,11 @@ RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
 
 # Install npm packages
 RUN sudo npm install -g zenn-cli@latest \
-                        textlint
+                        textlint \
+                        textlint-rule-preset-ja-technical-writing \
+                        textlint-rule-preset-ja-spacing \
+                        textlint-rule-prh \
+                        @proofdict/textlint-rule-proofdict
 
 # Set `DEVCONTAINER` environment variable to help with orientation
 ENV DEVCONTAINER=true
