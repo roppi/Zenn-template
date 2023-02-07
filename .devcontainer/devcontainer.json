@@ -9,6 +9,17 @@
   // コンテナ作成時にPRHのルールをnpmディレクトリからコピー（同名はスキップ）
   "postCreateCommand": "cp -rn /usr/local/lib/node_modules/textlint-rule-prh/node_modules/prh/prh-rules/*/ ./prh-rules/",
   
+  // コンテナ起動後にバックグラウンドでプレビューサーバ起動
+  "postStartCommand": "nohup bash -c 'zenn &' > /dev/null",
+  
+  // プレビューサーバ起動時にシンプルブラウザを起動する
+  "portsAttributes": {
+    "8000": {
+      "label": "Preview",
+      "onAutoForward": "openPreview"
+    }
+  },
+
   "customizations": {
     "vscode": {
       // コンテナ内で使用する Extension を指定
