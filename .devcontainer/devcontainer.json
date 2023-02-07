@@ -5,7 +5,10 @@
 		"dockerfile": "Dockerfile"
 	},
   "remoteUser": "node",
-
+  
+  // コンテナ作成時にPRHのルールをnpmディレクトリからコピー（同名はスキップ）
+  "postCreateCommand": "cp -rn /usr/local/lib/node_modules/textlint-rule-prh/node_modules/prh/prh-rules/*/ ./prh-rules/",
+  
   "customizations": {
     "vscode": {
       // コンテナ内で使用する Extension を指定

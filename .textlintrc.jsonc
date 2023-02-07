@@ -9,8 +9,8 @@
     "prh": {
       // 適用するルールファイル
       "rulePaths": [
-        "/usr/local/lib/node_modules/textlint-rule-prh/node_modules/prh/prh-rules/media/WEB+DB_PRESS.yml",
-        "/usr/local/lib/node_modules/textlint-rule-prh/node_modules/prh/prh-rules/media/techbooster.yml"
+        "./prh-rules/media/WEB+DB_PRESS.yml",
+        "./prh-rules/media/techbooster.yml"
       ],
       // 見出しチェック対象とするかどうか
       "checkHeader": true,
