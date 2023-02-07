@@ -14,7 +14,9 @@ RUN sudo npm install -g zenn-cli@latest \
                         textlint-rule-preset-ja-technical-writing \
                         textlint-rule-preset-ja-spacing \
                         textlint-rule-prh \
-                        @proofdict/textlint-rule-proofdict
+                        @proofdict/textlint-rule-proofdict \
+                        && mkdir '/usr/local/lib/node_modules/textlint/.cache' \
+                        && mkdir '/usr/local/lib/.cache' && chown node:node '/usr/local/lib/.cache'
 
 # Set `DEVCONTAINER` environment variable to help with orientation
 ENV DEVCONTAINER=true
